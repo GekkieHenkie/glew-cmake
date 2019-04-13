@@ -49,7 +49,11 @@ IF ( glew-cmake_BUILD_STATIC )
 		                       DEBUG_POSTFIX d )
 		TARGET_INCLUDE_DIRECTORIES( libglew_static PUBLIC ${INCLUDE_DIR} )
 		TARGET_LINK_LIBRARIES( libglew_static ${GL_LIBRARY} ${PLATFORM_SPECIFIC_LIBRARIES} )
-		INSTALL( TARGETS libglew_static DESTINATION lib )
+		INSTALL(TARGETS libglew_static
+                EXPORT libglew_static
+                ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+                )
+		INSTALL(EXPORT libglew_static DESTINATION cmake)
 	ENDIF (  )
 
 	IF ( glew-cmake_BUILD_MULTI_CONTEXT )
@@ -61,7 +65,11 @@ IF ( glew-cmake_BUILD_STATIC )
 		TARGET_COMPILE_DEFINITIONS( libglewmx_static INTERFACE GLEW_MX)
 		TARGET_INCLUDE_DIRECTORIES( libglewmx_static PUBLIC ${INCLUDE_DIR} )
 		TARGET_LINK_LIBRARIES( libglewmx_static ${GL_LIBRARY} ${PLATFORM_SPECIFIC_LIBRARIES} )
-		INSTALL( TARGETS libglewmx_static DESTINATION lib )
+		INSTALL(TARGETS libglewmx_static
+                EXPORT libglewmx_static
+                ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+                )
+		INSTALL(EXPORT libglewmx_static DESTINATION cmake)
 	ENDIF (  )
 ENDIF (  )
 
@@ -76,7 +84,13 @@ IF ( glew-cmake_BUILD_SHARED )
 
 		TARGET_INCLUDE_DIRECTORIES( libglew_shared PUBLIC ${INCLUDE_DIR} )
 		TARGET_LINK_LIBRARIES( libglew_shared ${GL_LIBRARY} ${PLATFORM_SPECIFIC_LIBRARIES} )
-		INSTALL( TARGETS libglew_shared DESTINATION lib )
+		INSTALL(TARGETS libglew_shared
+                EXPORT libglew_shared
+                ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+                LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+                RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+                )
+		INSTALL(EXPORT libglew_shared DESTINATION cmake)
 	ENDIF (  )
 
 	IF ( glew-cmake_BUILD_MULTI_CONTEXT )
@@ -90,7 +104,13 @@ IF ( glew-cmake_BUILD_SHARED )
 		TARGET_COMPILE_DEFINITIONS( libglewmx_shared INTERFACE GLEW_MX)
 		TARGET_INCLUDE_DIRECTORIES( libglewmx_shared PUBLIC ${INCLUDE_DIR} )
 		TARGET_LINK_LIBRARIES( libglewmx_shared ${GL_LIBRARY} ${PLATFORM_SPECIFIC_LIBRARIES} )
-		INSTALL( TARGETS libglewmx_shared DESTINATION lib )
+		INSTALL(TARGETS libglewmx_shared
+                EXPORT libglewmx_shared
+                ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+                LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+                RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+                )
+		INSTALL(EXPORT libglewmx_shared DESTINATION cmake)
 	ENDIF (  )
 ENDIF (  )
 
